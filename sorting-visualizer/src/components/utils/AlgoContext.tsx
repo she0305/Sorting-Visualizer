@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { getInsertionSortAnims } from "./insertionSort";
 
 interface Settings {
   algoType: Algo;
@@ -25,7 +26,7 @@ type SettingsContext = {
 
 export const Context = createContext<SettingsContext>({
   settings: initVals,
-  sort: algoType => {},
+  sort: (algoType) => {},
 });
 
 type Items = {
@@ -49,8 +50,10 @@ const AlgoContext: React.FC<Props> = ({ children }) => {
 
   const sort = (algoType: Algo) => {
     switch (algoType) {
-      case "insertion sort" :
-        console.log(algoType);
+      case "insertion sort":
+        const { newArr, animArr } = getInsertionSortAnims(items);
+        animateDivs(newArr, animArr);
+        console.log(animArr);
         break;
       case "merge sort":
         break;
@@ -58,6 +61,31 @@ const AlgoContext: React.FC<Props> = ({ children }) => {
         break;
     }
   };
+
+  const animateDivs = (newArr: number[], arr: number[][]) => {
+    arr.forEach(([first, second], idx) => {
+      const div = document.getElementById(`${first}`);
+      const div2 = document.getElementById(`${second}`);
+      if (!div || !div2) return;
+      setTimeout(() => {
+        div.style.backgroundColor = "#b041f0"
+        div2.style.backgroundColor = "#b041f0";
+        const divHeight = div.style.height;
+        div.style.height = div2.style.height;
+        div2.style.height= divHeight;
+        // setTimeout(() => {
+        //   div.style.backgroundColor = "#482"
+        //   div2.style.backgroundColor = "#482";
+        //   if (idx === arr.length-1) {
+        //     setItems(newArr);
+        //   }
+        // }, settings.delay * 3)
+      }, settings.delay * idx * 3);
+
+
+    });
+  };
+
   return (
     <ItemsContext.Provider value={{ items, setItems }}>
       <Context.Provider value={{ sort, settings, setSettings }}>
