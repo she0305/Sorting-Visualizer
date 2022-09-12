@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AlgoContext, { Context, Algo } from "./utils/AlgoContext";
 
 const Nav = () => {
-  const { settings, setSettings } = useContext(Context);
+  const { sort, settings, setSettings } = useContext(Context);
 
   const onArrayChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     if (!setSettings) return;
@@ -17,7 +17,6 @@ const Nav = () => {
   };
 
   const onAlgoChange = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     type: Algo
   ) => {
     if (!setSettings) return;
@@ -33,7 +32,7 @@ const Nav = () => {
             className={`border border-teal-100 shadow-md py-2 px-4 transition-all active:scale-95 ${
               settings.algoType === "merge sort" && "text-purple-500"
             }`}
-            onClick={(e) => onAlgoChange(e, "merge sort")}
+            onClick={(e) => onAlgoChange("merge sort")}
           >
             Merge Sort
           </button>
@@ -41,12 +40,12 @@ const Nav = () => {
             className={`border border-teal-100 shadow-md py-2 px-4 transition-all active:scale-95 ${
                 settings.algoType === "insertion sort" && "text-purple-500"
             }`}
-            onClick={(e) => onAlgoChange(e, "insertion sort")}
+            onClick={(e) => onAlgoChange("insertion sort")}
           >
             Insertion Sort
           </button>
         </div>
-        <button className="underline">Sort!</button>
+        <button className="underline" onClick={() => sort(settings.algoType) }>Sort!</button>
       </div>
       <div className="flex flex-col items-center w-full pb-3">
         <label htmlFor="items_amount"> Array Length: {settings.arrayLen}</label>
