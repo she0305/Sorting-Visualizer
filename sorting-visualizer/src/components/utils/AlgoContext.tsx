@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { getInsertionSortAnims } from "./insertionSort";
+import {getMergeSortAnims} from "./mergeSort"
 
 interface Settings {
   algoType: Algo;
@@ -56,10 +57,33 @@ const AlgoContext: React.FC<Props> = ({ children }) => {
         console.log(animArr);
         break;
       case "merge sort":
+        const aux: number[] = [];
+        const arr: number[][] = [];
+        const nums = [...items];
+        getMergeSortAnims(nums, aux, arr, 0, items.length -1);
+        animateMerge(nums,arr);
         break;
       default:
         break;
     }
+  };
+
+  const animateMerge = (newArr: number[], arr: number[][]) => {
+    arr.forEach(([newHeight, index], idx) => {
+      const div = document.getElementById(`${index}`);
+      if (!div) return;
+      setTimeout(() => {
+        div.style.backgroundColor = "#b041f0";
+        div.style.height = `${newHeight / 7}%`;
+        // setTimeout(() => {
+        //   div.style.backgroundColor = "#482"
+        //   div2.style.backgroundColor = "#482";
+        //   if (idx === arr.length-1) {
+        //     setItems(newArr);
+        //   }
+        // }, settings.delay * 3)
+      }, settings.delay * idx * 3);
+    });
   };
 
   const animateDivs = (newArr: number[], arr: number[][]) => {
