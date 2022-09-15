@@ -1,3 +1,17 @@
+# Sorting-Visualizer Side Project
+
+In order to understand the sorting algorithm, I decided to build a sorting visualizer tool. As I'm currently using Typescript as a main coding language at work, I decided to use Typescript to strengthen my language understanding as well. 
+
+## Two Types of Sorting
+
+I have Merge sort and Insertion sort as two methods available in the tool. By watching the visualizer demonstrating the different ways of sorting, it is easier to understand the efficiency and compare between the two methods. 
+
+## Before the sort
+![image](https://user-images.githubusercontent.com/95587111/190506924-282bcad5-a5b9-4194-87ff-f64e1c0b1910.png)
+
+## After the sort
+![image](https://user-images.githubusercontent.com/95587111/190507375-0f972d61-4af1-435b-83e7-d2129b383b6e.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
